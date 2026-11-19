@@ -1,5 +1,7 @@
+import { Link } from "react-router"
+
 function PostCard ({id, title,description,codeSnippet,difficulty,user,userProfile}){
-  console.log(id)
+    
        const difficultyStyles = {
            'beginner': 'bg-green-100 text-green-700',
            'intermediate': 'bg-yellow-100 text-yellow-700',
@@ -13,7 +15,7 @@ function PostCard ({id, title,description,codeSnippet,difficulty,user,userProfil
     <div className="flex items-center gap-3">
       { 
       userProfile 
-       ? <img src={userProfile} alt="" className="w-10 h-10 rounded-full object-cover"/> 
+       ? <img src={`http://devhub.test/storage/${userProfile}`} alt="" className="w-10 h-10 rounded-full object-cover"/> 
        : <span className="flex items-center justify-center w-10 h-10 bg-violet-300  rounded-full font-bold">{(user || 'unknown user').charAt(0)}</span>
        }
         
@@ -28,7 +30,12 @@ function PostCard ({id, title,description,codeSnippet,difficulty,user,userProfil
         {difficulty}
     </span>
 
-    <h3 className="text-lg text-gray-900 dark:text-slate-100 font-bold ">{title}</h3> 
+    <Link 
+        to={`/posts/${id}`}
+        className="text-lg text-gray-900 dark:text-slate-100 font-bold "
+      >
+        {title}
+    </Link> 
 </div>
 
      <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">{description}</p>

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react"
-import Navbar from "../components/Navbar.jsx"
 import PostCard from "../components/PostCard.jsx"
 import Pagination from "../components/Pagination.jsx"
 import { AuthContext } from "../context/AuthContext.jsx"
@@ -143,19 +142,16 @@ function Home() {
    
  return (
 <>
-      
-        <Navbar />
-
       {
         postIsLoading
-        ? 'Loading Posts...'
+        ? <span className="flex items-center justify-center h-screen dark:text-white">Loading Posts...</span>
         :postError
             ?<>
-            {postError}
+            <span className="flex items-center justify-center h-screen text-sm text-red-600">{postError}</span>
             <button onClick={loadPageFromUrl}>Try Again</button>
             </> 
             :posts.length === 0
-              ? <p>No posts yet. Be the first to share one!</p> 
+              ? <p className="flex items-center justify-center h-screen dark:text-white">No posts yet. Be the first to share one!</p> 
                 :<div className="max-w-3xl mx-auto px-4">
                   {posts.map(post => {
                   return <PostCard 
